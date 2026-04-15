@@ -15,8 +15,14 @@
 --12 select last_name, title, department_id, salary from employee where title= 'représentant' or title= 'secrétaire' and department_id= 34;
 --13 select last_name, salary from employee where salary > 20000 and salary < 30000;
 --14 select last_name from employee where last_name like 'h%';
+--
+-- ATTENTION aux SGBD sensible à la casse !
+--
 --15 select last_name from employee where last_name like '%n';
 --16 select last_name from employee where last_name like '__n%';
+--
+-- La lettre recherchée est u
+--
 --17 select salary, last_name from employee where department_id= 41 order by salary asc;
 --18 select salary, last_name from employee where department_id= 41 order by salary desc;
 --19 select title, salary, last_name from employee order by title asc, salary desc;
@@ -26,9 +32,21 @@
 --23 select last_name, salary, commission_rate, title from employee where commission_rate < 15;
 --24 select last_name, salary, commission_rate, title from employee where commission_rate > 15;
 --25 select last_name, salary, commission_rate (commission_rate*salary) from employee where commission_rate IS not null;
+--
+-- erreur de syntaxe :  commission_rate * salary AS commission
+--
+
 --26 select last_name, salary, commission_rate (commission_rate*salary) from employee where commission_rate IS not null order by commission_rate asc;
 --27 select CONCAT (last_name, first_name) from employee;
+
+--
+-- Manque un alias pour nommer la colonne
+--
+
 --28 select SUBSTRING (last_name, 1, 5) from employee;
+--
+-- L'indice de la première lettre associée à la fonction SUBSTRING est 0
+--
 --29 select last_name,position( 'r' in last_name) from employee;
 --30 select last_name, UPPER(last_name), LOWER(last_name) from employee where last_name = 'vrante';
 --31 select last_name, LENGTH(last_name) from employee;

@@ -16,6 +16,7 @@
     join department d 
     on e.department_id = d.id
     where name = 'distribution';
+-- Attention à la casse : préférer : WHERE LOWER(d.name) = 'distribution' ou WHERE d.name ILIKE 'distribution'  pour PostgreSQL
 
 4 select e1.last_name AS "Employeur", e2.last_name AS "Employé", e1.salary AS "Employeur", e2.salary AS "Employé"
     from employee e1
@@ -30,6 +31,9 @@ where department_id IN (
     from department
     where name = 'finance'
 );
+-- idem attention à la casse
+
+-- La colonne s'appelle last_name, pas name
 
 6 select name, title
 from employee
@@ -57,6 +61,7 @@ where salary > ALL (
     where department_id = 31
 )
 order by department_id, salary;
+
 
 9 select name, title
 from employee
@@ -94,6 +99,7 @@ order by d.id;
 13 select AVG(salary)
 from employee
 where  title = 'secrétaire';
+-- WHERE title = 'secrétaire' → préférer LIKE ou ILIKE pour la casse
 
 14 select title, COUNT(*)
 from employee
@@ -114,6 +120,8 @@ having COUNT(*) >= 3;
 from employee
 group by SUBSTRING(name, 1, 1)
 having COUNT(*) >= 3;
+-- SUBSTRING(string, start_position, length) : start_position: This is an integer that specifies where in the string you want to extract the substring. If start_position equals zero, the substring starts at the first character of the string. The start_position can be only positive. Note that in other database systems such as MySQL the SUBSTRING() function can accept a negative start_position.
+-- length: This is a positive integer that determines the number of characters that you want to extract 
 
 18 select
     MAX(salary) AS max_salary,
